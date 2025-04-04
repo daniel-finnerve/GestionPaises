@@ -9,13 +9,47 @@
 <body>
     <header>
         <h1>Country Management</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Countries</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
+        <section id="search-bar">
+            <input type="text" id="search-input" placeholder="Search countries...">
+        </section>
         <section id="country-info">
             <h2>Country Information</h2>
-            <div id="country-details">
-                <!-- Placeholder for country information -->
-            </div>
+            <table id="country-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Population</th>
+                        <th>Capital</th>
+                        <th>Region</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Placeholder for country information -->
+                </tbody>
+            </table>
+        </section>
+        <section id="add-country">
+            <h2>Add New Country</h2>
+            <form id="add-country-form">
+                <label for="country-name">Name:</label>
+                <input type="text" id="country-name" name="country-name" required>
+                <label for="country-population">Population:</label>
+                <input type="text" id="country-population" name="country-population" required>
+                <label for="country-capital">Capital:</label>
+                <input type="text" id="country-capital" name="country-capital" required>
+                <label for="country-region">Region:</label>
+                <input type="text" id="country-region" name="country-region" required>
+                <button type="submit">Add Country</button>
+            </form>
         </section>
     </main>
     <footer>
