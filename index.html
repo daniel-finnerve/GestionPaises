@@ -1,60 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Country Management</title>
+    <title>Listas Maestras</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Primero cargar data.js y luego script.js -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Country Management</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Countries</a></li>
-                <li><a href="#">About</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="search-bar">
-            <input type="text" id="search-input" placeholder="Search countries...">
-        </section>
-        <section id="country-info">
-            <h2>Country Information</h2>
-            <table id="country-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Population</th>
-                        <th>Capital</th>
-                        <th>Region</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Placeholder for country information -->
-                </tbody>
-            </table>
-        </section>
-        <section id="add-country">
-            <h2>Add New Country</h2>
-            <form id="add-country-form">
-                <label for="country-name">Name:</label>
-                <input type="text" id="country-name" name="country-name" required>
-                <label for="country-population">Population:</label>
-                <input type="text" id="country-population" name="country-population" required>
-                <label for="country-capital">Capital:</label>
-                <input type="text" id="country-capital" name="country-capital" required>
-                <label for="country-region">Region:</label>
-                <input type="text" id="country-region" name="country-region" required>
-                <button type="submit">Add Country</button>
-            </form>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Country Management</p>
-    </footer>
-    <script src="script.js"></script>
+    <div class="container">
+        <h1>Listas maestras</h1>
+        <p>Aquí podrás ver y editar los valores de las listas maestras</p>
+        <div class="input-container">
+            <input type="text" id="searchInput" placeholder="Buscar...">
+            <button onclick="openModal('add')">AÑADIR</button>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab">BANCOS</div>
+            <div class="tab">CARGOS DEL CONTACTO</div>
+            <div class="tab">INDUSTRIAS</div>
+            <div class="tab active">PAISES</div>
+            <div class="tab">TIPO DE OPERACIÓN</div>
+            <div class="tab">EJECUTIVA COMERCIAL</div>
+        </div>
+        
+        <div class="list" id="list">
+            <!-- El encabezado y los elementos se añadirán dinámicamente -->
+        </div>
+    </div>
+
+    <!-- Modal para añadir país -->
+    <div class="modal" id="addModal">
+        <div class="modal-content">
+            <h3>Añadir País</h3>
+            <input type="text" id="countryName" placeholder="Nombre del país">
+            <input type="text" id="countryCode" placeholder="Código">
+            <input type="text" id="countryDesc" placeholder="Descripción">
+            <div class="modal-buttons">
+                <button onclick="addItem()">Aceptar</button>
+                <button onclick="closeModal('add')">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para confirmar eliminación -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content warning-modal">
+            <h3>Confirmar eliminación</h3>
+            <p>¿Estás seguro de que deseas eliminar este país?</p>
+            <div class="modal-buttons">
+                <button id="confirmDeleteBtn">Eliminar</button>
+                <button onclick="closeModal('confirm')">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para error de eliminación -->
+    <div class="modal" id="errorModal">
+        <div class="modal-content error-modal">
+            <h3>No se puede eliminar</h3>
+            <p>No se puede eliminar el país porque tiene datos referenciados en el sistema.</p>
+            <div class="modal-buttons">
+                <button onclick="closeModal('error')">Aceptar</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+
