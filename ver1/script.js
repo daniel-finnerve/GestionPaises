@@ -48,6 +48,10 @@ function addItem() {
     `;
     list.appendChild(div);
 
+    // Añadir evento de clic a la descripción
+    const descElement = div.querySelector(".item-desc");
+    descElement.addEventListener("click", () => makeDescriptionEditable(div));
+
     // Añadir el nuevo país al array de datos
     countriesData.push({
       name: name,
@@ -101,17 +105,6 @@ function removeItem(element) {
 function loadInitialData() {
   const list = document.getElementById("list");
 
-  // Eliminar estas líneas que crean el encabezado
-  // const header = document.createElement("div");
-  // header.className = "list-header";
-  // header.innerHTML = `
-  //   <div>País</div>
-  //   <div>Código</div>
-  //   <div>Descripción</div>
-  //   <div></div>
-  // `;
-  // list.appendChild(header);
-
   // Cargar los países desde el JSON
   countriesData.forEach((country) => {
     const div = document.createElement("div");
@@ -128,6 +121,60 @@ function loadInitialData() {
       <span class='${deleteClass}' onclick='removeItem(this)'>✖</span>
     `;
     list.appendChild(div);
+
+    // Añadir evento de clic a la descripción
+    const descElement = div.querySelector(".item-desc");
+    descElement.addEventListener("click", () => makeDescriptionEditable(div));
+  });
+}
+
+// Añadir esta función para hacer editable la descripción
+function makeDescriptionEditable(element) {
+  const descDiv = element.querySelector(".item-desc");
+  const currentText =
+    descDiv.textContent === "Agregar Descripción" ? "" : descDiv.textContent;
+
+  // Crear el input y establecer su valor
+  const input = document.createElement("input");
+  input.type = "text";
+  input.value = currentText;
+  input.className = "edit-desc-input";
+
+  // Reemplazar el div con el input
+  descDiv.innerHTML = "";
+  descDiv.appendChild(input);
+  input.focus();
+
+  // Función para guardar los cambios
+  function saveChanges() {
+    const newValue = input.value.trim();
+
+    // Si el valor está vacío, establecer un placeholder
+    const finalValue = newValue || "Agregar Descripción";
+
+    // Actualizar el DOM
+    descDiv.innerHTML = finalValue;
+
+    // Actualizar el array de datos
+    const itemIndex = Array.from(document.querySelectorAll(".item")).indexOf(
+      element
+    );
+    if (itemIndex !== -1 && countriesData[itemIndex]) {
+      countriesData[itemIndex].description = finalValue;
+    }
+  }
+
+  // Guardar al presionar Enter
+  input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      saveChanges();
+      input.blur();
+    }
+  });
+
+  // Guardar al hacer clic fuera
+  input.addEventListener("blur", () => {
+    saveChanges();
   });
 }
 
@@ -145,20 +192,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Añadir funcionalidad al campo de búsqueda
-  document.getElementById("searchInput").addEventListener("input", function () {
-    const searchTerm = this.value.toLowerCase();
-    const items = document.querySelectorAll(".item:not(.list-header)");
-
-    items.forEach((item) => {
-      const text = item.textContent.toLowerCase();
-      if (text.includes(searchTerm)) {
-        item.style.display = "grid";
-      } else {
-        item.style.display = "none";
-      }
-    });
-  });
+  // Eliminar el event listener del campo de búsqueda
+  // No necesitamos filtrado en este prototipo
+  // document.getElementById("searchInput").addEventListener("input", function () { ... });
 
   // Cerrar los modales si se hace clic fuera de ellos
   window.addEventListener("click", (event) => {

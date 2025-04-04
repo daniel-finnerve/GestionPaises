@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listas Maestras</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Primero cargar data.js y luego script.js -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Gestion de Paises</h1>
+      <p>Aquí podrás ver y editar los valores de los paises</p>
+      <div class="input-container">
+        <div class="row">
+          <input type="text" id="searchInput" placeholder="Nombre del país" />
+          <button onclick="addItem()">AÑADIR</button>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <div class="tab">BANCOS</div>
+        <div class="tab">CARGOS DEL CONTACTO</div>
+        <div class="tab">INDUSTRIAS</div>
+        <div class="tab active">PAISES</div>
+        <div class="tab">TIPO DE OPERACIÓN</div>
+        <div class="tab">EJECUTIVA COMERCIAL</div>
+      </div>
+
+      <div class="input-container" style="margin-top: 1rem">
+        <div class="row">
+          <input type="text" id="countryCode" placeholder="Código" />
+          <input type="text" id="countryDesc" placeholder="Descripción" />
+        </div>
+      </div>
+
+      <div class="list" id="list">
+        <!-- El encabezado y los elementos se añadirán dinámicamente -->
+      </div>
+    </div>
+
+    <!-- Modal para confirmar eliminación -->
+    <div class="modal" id="confirmModal">
+      <div class="modal-content warning-modal">
+        <h3>Confirmar eliminación</h3>
+        <p>¿Estás seguro de que deseas eliminar este país?</p>
+        <div class="modal-buttons">
+          <button id="confirmDeleteBtn">Eliminar</button>
+          <button onclick="closeModal('confirm')">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para error de eliminación -->
+    <div class="modal" id="errorModal">
+      <div class="modal-content error-modal">
+        <h3>No se puede eliminar</h3>
+        <p>
+          No se puede eliminar el país porque tiene datos referenciados en el
+          sistema.
+        </p>
+        <div class="modal-buttons">
+          <button onclick="closeModal('error')">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

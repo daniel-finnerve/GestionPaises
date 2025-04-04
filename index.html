@@ -1,73 +1,93 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listas Maestras</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Primero cargar data.js y luego script.js -->
-    <script src="data.js"></script>
-    <script src="script.js"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prototipos Finnerve</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f5f5f5;
+      }
+      .container {
+        text-align: center;
+        background-color: white;
+        border-radius: 8px;
+        padding: 40px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        width: 90%;
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 30px;
+      }
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 30px;
+      }
+      .button {
+        padding: 15px 30px;
+        font-size: 18px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+      .button:hover {
+        background-color: #0056b3;
+      }
+      .version-info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        text-align: left;
+      }
+      .version {
+        flex: 1;
+        margin: 0 10px;
+        padding: 15px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+      }
+      .version h3 {
+        margin-top: 0;
+        color: #007bff;
+      }
+    </style>
+  </head>
+  <body>
     <div class="container">
-        <h1>Listas maestras</h1>
-        <p>Aquí podrás ver y editar los valores de las listas maestras</p>
-        <div class="input-container">
-            <input type="text" id="searchInput" placeholder="Buscar...">
-            <button onclick="openModal('add')">AÑADIR</button>
-        </div>
-        
-        <div class="tabs">
-            <div class="tab">BANCOS</div>
-            <div class="tab">CARGOS DEL CONTACTO</div>
-            <div class="tab">INDUSTRIAS</div>
-            <div class="tab active">PAISES</div>
-            <div class="tab">TIPO DE OPERACIÓN</div>
-            <div class="tab">EJECUTIVA COMERCIAL</div>
-        </div>
-        
-        <div class="list" id="list">
-            <!-- El encabezado y los elementos se añadirán dinámicamente -->
-        </div>
-    </div>
+      <h1>Prototipos Finnerve - Gestión de Paises</h1>
 
-    <!-- Modal para añadir país -->
-    <div class="modal" id="addModal">
-        <div class="modal-content">
-            <h3>Añadir País</h3>
-            <input type="text" id="countryName" placeholder="Nombre del país">
-            <input type="text" id="countryCode" placeholder="Código">
-            <input type="text" id="countryDesc" placeholder="Descripción">
-            <div class="modal-buttons">
-                <button onclick="addItem()">Aceptar</button>
-                <button onclick="closeModal('add')">Cancelar</button>
-            </div>
-        </div>
-    </div>
+      <p>Seleccione la versión del prototipo que desea visualizar:</p>
 
-    <!-- Modal para confirmar eliminación -->
-    <div class="modal" id="confirmModal">
-        <div class="modal-content warning-modal">
-            <h3>Confirmar eliminación</h3>
-            <p>¿Estás seguro de que deseas eliminar este país?</p>
-            <div class="modal-buttons">
-                <button id="confirmDeleteBtn">Eliminar</button>
-                <button onclick="closeModal('confirm')">Cancelar</button>
-            </div>
-        </div>
-    </div>
+      <div class="button-container">
+        <a href="ver1/index.html" class="button">Versión 1</a>
+        <a href="ver2/index.html" class="button">Versión 2</a>
+      </div>
 
-    <!-- Modal para error de eliminación -->
-    <div class="modal" id="errorModal">
-        <div class="modal-content error-modal">
-            <h3>No se puede eliminar</h3>
-            <p>No se puede eliminar el país porque tiene datos referenciados en el sistema.</p>
-            <div class="modal-buttons">
-                <button onclick="closeModal('error')">Aceptar</button>
-            </div>
+      <div class="version-info">
+        <div class="version">
+          <h3>Versión 1</h3>
+          <p>Prototipo con modal para añadir nuevos elementos.</p>
         </div>
+        <div class="version">
+          <h3>Versión 2</h3>
+          <p>Prototipo con formulario integrado en la página principal.</p>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
-
